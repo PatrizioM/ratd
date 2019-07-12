@@ -110,5 +110,9 @@ else
 wrs -a "$width" "$min_H" "$wid"
 fi
 
+#switch focus to the next window
+xdotool keydown alt key Tab
+xdotool keyup alt 
+
 # end of main if (terminal is opened or closed)
 fi
