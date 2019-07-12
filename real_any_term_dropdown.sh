@@ -94,25 +94,31 @@ consoleH=$(xdotool getwindowgeometry "$pid" |tail -n1 |tail -c 3)
 # check if it's up or down
 if [ "$consoleH" -lt "$min_H" ]
 
-# up
+# is up
 then
-
-# drop it down
-wrs -a "$width" "$height" "$wid"
 
 # switch focus on the terminal
 wtf "$wid"
 
-# down
+# drop it down
+wrs -a "$width" "$height" "$wid"
+
+
+# is down
 else
+
+# switch focus on the terminal to be sure it will not get focus once reduced
+wtf "$wid"
 
 # roll it up
 wrs -a "$width" "$min_H" "$wid"
-fi
 
-#switch focus to the next window
+#switch focus to the previous window
 xdotool keydown alt key Tab
-xdotool keyup alt 
+xdotool keyup alt
+
+#end of up or down if
+fi
 
 # end of main if (terminal is opened or closed)
 fi
